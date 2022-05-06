@@ -1,0 +1,12 @@
+mysql:
+  addr: 127.0.0.1:3306
+  password: root
+  databases: demo
+pgsql:
+  addr: 127.0.0.1:3306
+  password: root
+  databases: demo
+redis:
+  addr: 127.0.0.1:3306
+  password: ""
+  databases: ""
