@@ -17,8 +17,8 @@ import (
 	"github.com/spf13/cast"
 	"gopkg.in/yaml.v2"
 
-	"coredemo/framework"
-	"coredemo/framework/contract"
+	"github.com/ruanlianjun/api/framework"
+	"github.com/ruanlianjun/api/framework/contract"
 )
 
 type AppConfig struct {

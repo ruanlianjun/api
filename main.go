@@ -1,13 +1,16 @@
 package main
 
 import (
+	"context"
+	"fmt"
 	"log"
 
-	"coredemo/framework"
-	"coredemo/framework/contract"
-	"coredemo/framework/provider/app"
-	"coredemo/framework/provider/config"
-	"coredemo/framework/provider/env"
+	"github.com/ruanlianjun/api/framework"
+	"github.com/ruanlianjun/api/framework/contract"
+	"github.com/ruanlianjun/api/framework/provider/app"
+	"github.com/ruanlianjun/api/framework/provider/config"
+	"github.com/ruanlianjun/api/framework/provider/env"
+	"github.com/ruanlianjun/api/framework/provider/redis"
 )
 
 func main() {
@@ -27,11 +30,24 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = container.Bind(&config.AppConfigProvider{})
+	if err = container.Bind(&config.AppConfigProvider{}); err != nil {
+		panic(err)
+	}
+
+	if err := container.Bind(&redis.RedisProvider{}); err != nil {
+		panic(err)
+	}
+
+	a := container.MustMake(contract.RedisKey).(contract.RedisService)
+	client, err := a.GetClient()
+	if err != nil {
+		panic(err)
+	}
+	err = client.Set(context.Background(), "demo", "one", 0).Err()
 	if err != nil {
 		panic(err)
 	}
 
-	a := container.MustMake(contract.EnvKey).(contract.Env)
-	log.Printf("=========================== base_folder:%v\n", a.All())
+	demoStr, _ := client.Get(context.Background(), "demo").Result()
+	fmt.Println("demo: ", demoStr)
 }

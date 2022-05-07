@@ -7,8 +7,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 
-	"coredemo/framework"
-	"coredemo/framework/utils"
+	"github.com/ruanlianjun/api/framework"
+	"github.com/ruanlianjun/api/framework/utils"
 )
 
 type App struct {

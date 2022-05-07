@@ -10,7 +10,7 @@ import (
 
 	"github.com/pkg/errors"
 
-	"coredemo/framework/contract"
+	"github.com/ruanlianjun/api/framework/contract"
 )
 
 type AppEnv struct {

@@ -1,8 +1,8 @@
 package app
 
 import (
-	"coredemo/framework"
-	"coredemo/framework/contract"
+	"github.com/ruanlianjun/api/framework"
+	"github.com/ruanlianjun/api/framework/contract"
 )
 
 type AppProvider struct {
